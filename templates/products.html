@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Products | SmartBill{% endblock %}
+{% block mobile_title %}Products{% endblock %}
+{% block content %}
+<section class="page-header">
+  <div><p class="eyebrow">Inventory</p><h1>Products</h1><p class="page-description">Manage products, pricing and stock.</p></div>
+  <button class="button primary-button" id="addProductBtn">＋ Add Product</button>
+</section>
+
+<section class="card">
+  <div class="toolbar">
+    <label class="search-box"><span>⌕</span><input type="search" placeholder="Search products..." id="productSearch"></label>
+    <select><option>All Categories</option><option>Groceries</option><option>Beverages</option><option>Snacks</option><option>Household</option></select>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Product Name</th><th>Category</th><th>Unit</th><th>Price (₹)</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody id="productTable">
+        <tr><td>1</td><td>Rice</td><td>Groceries</td><td>kg</td><td>60</td><td>120</td><td><span class="badge success-badge">In Stock</span></td><td><button class="icon-action">✎</button><button class="icon-action danger-action">⌫</button></td></tr>
+        <tr><td>2</td><td>Sugar</td><td>Groceries</td><td>kg</td><td>45</td><td>85</td><td><span class="badge success-badge">In Stock</span></td><td><button class="icon-action">✎</button><button class="icon-action danger-action">⌫</button></td></tr>
+        <tr><td>3</td><td>Tea</td><td>Beverages</td><td>pcs</td><td>120</td><td>40</td><td><span class="badge success-badge">In Stock</span></td><td><button class="icon-action">✎</button><button class="icon-action danger-action">⌫</button></td></tr>
+        <tr><td>4</td><td>Biscuits</td><td>Snacks</td><td>pcs</td><td>30</td><td>8</td><td><span class="badge warning-badge">Low Stock</span></td><td><button class="icon-action">✎</button><button class="icon-action danger-action">⌫</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="modal hidden" id="productModal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-panel">
+    <div class="modal-header"><div><h2>Add Product</h2><p>Frontend-only form shell.</p></div><button class="icon-button" id="closeProductModal">×</button></div>
+    <form id="productForm" class="form-grid">
+      <label>Product Name<input required name="name" type="text"></label>
+      <label>Category<input required name="category" type="text"></label>
+      <label>Unit<select name="unit"><option>kg</option><option>litre</option><option>pcs</option></select></label>
+      <label>Selling Price<input required name="price" type="number" min="0" step="0.01"></label>
+      <label>Initial Stock<input required name="stock" type="number" min="0"></label>
+      <label>Minimum Stock Level<input required name="min_stock" type="number" min="0"></label>
+      <div class="form-actions"><button type="button" class="button secondary-button" id="cancelProductModal">Cancel</button><button class="button primary-button" type="submit">Save Demo Product</button></div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block page_script %}<script src="/static/js/products.js"></script>{% endblock %}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}SmartBill{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/dashboard.html" aria-label="SmartBill Dashboard">
+        <span class="brand-mark">▣</span>
+        <span>
+          <strong>SmartBill</strong>
+          <small>Retail Billing System</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/dashboard.html" data-page="dashboard"><span>⌂</span>Dashboard</a>
+        <a href="/products.html" data-page="products"><span>▦</span>Products</a>
+        <a href="/billing.html" data-page="billing"><span>＋</span>New Bill</a>
+        <a href="/sales.html" data-page="sales"><span>▤</span>Sales History</a>
+        <a href="/analytics.html" data-page="analytics"><span>◒</span>Analytics</a>
+        <a href="/settings.html" data-page="settings"><span>⚙</span>Settings</a>
+      </nav>
+
+      <div class="sidebar-user">
+        <div class="avatar">A</div>
+        <div>
+          <strong>Admin</strong>
+          <small>admin@shop.com</small>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="mobile-header">
+        <button class="icon-button" id="menuToggle" aria-label="Open navigation">☰</button>
+        <strong>SmartBill</strong>
+        <span class="mobile-page-title">{% block mobile_title %}{% endblock %}</span>
+      </header>
+
+      <div class="page-content">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a href="/dashboard.html" data-page="dashboard"><span>⌂</span><small>Home</small></a>
+    <a href="/products.html" data-page="products"><span>▦</span><small>Products</small></a>
+    <a href="/billing.html" data-page="billing"><span>＋</span><small>Bill</small></a>
+    <a href="/sales.html" data-page="sales"><span>▤</span><small>Sales</small></a>
+    <a href="/analytics.html" data-page="analytics"><span>◒</span><small>Insights</small></a>
+  </nav>
+
+  <script src="/static/js/app.js"></script>
+  {% block page_script %}{% endblock %}
+</body>
+</html>

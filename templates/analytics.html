@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Analytics | SmartBill{% endblock %}
+{% block mobile_title %}Analytics{% endblock %}
+{% block content %}
+<section class="page-header">
+  <div><p class="eyebrow">Sales Intelligence</p><h1>Analytics</h1><p class="page-description">Understand sales patterns with demo data.</p></div>
+  <select class="period-select"><option>Last 30 Days</option><option>Last 7 Days</option><option>This Month</option></select>
+</section>
+<section class="metric-grid">
+  <article class="metric-card success"><span>Total Sales</span><strong>₹ 3,48,500</strong><small>Demo data</small></article>
+  <article class="metric-card primary"><span>Total Bills</span><strong>620</strong><small>Selected period</small></article>
+  <article class="metric-card warning"><span>Average Bill Value</span><strong>₹ 562</strong><small>Sales ÷ bills</small></article>
+  <article class="metric-card danger"><span>Low Stock Items</span><strong>12</strong><small>Needs attention</small></article>
+</section>
+<section class="analytics-grid">
+  <article class="card chart-card large"><div class="card-header"><div><h2>Sales Trend</h2><p>Daily sales</p></div></div><div class="chart-placeholder tall"><div class="bar-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></article>
+  <article class="card"><div class="card-header"><div><h2>Top Products</h2><p>Quantity sold</p></div></div><div class="rank-list"><div><span>01</span><strong>Rice</strong><b>320</b></div><div><span>02</span><strong>Sugar</strong><b>280</b></div><div><span>03</span><strong>Tea</strong><b>210</b></div><div><span>04</span><strong>Biscuits</strong><b>180</b></div><div><span>05</span><strong>Oil</strong><b>150</b></div></div></article>
+  <article class="card category-card"><div class="card-header"><div><h2>Category-wise Sales</h2><p>Selected period</p></div></div><div class="donut-placeholder"></div><div class="legend"><span>Groceries 45%</span><span>Beverages 20%</span><span>Snacks 15%</span><span>Household 10%</span><span>Others 10%</span></div></article>
+</section>
+{% endblock %}
+{% block page_script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/js/analytics.js"></script>
+{% endblock %}
