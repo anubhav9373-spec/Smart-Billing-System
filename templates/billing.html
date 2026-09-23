@@ -1,47 +1,357 @@
 {% extends "base.html" %}
+
 {% block title %}New Bill | SmartBill{% endblock %}
 {% block mobile_title %}New Bill{% endblock %}
+
 {% block content %}
+
 <section class="page-header">
-  <div><p class="eyebrow">Checkout</p><h1>New Bill</h1><p class="page-description">Create a bill quickly using existing product units and prices.</p></div>
-  <span class="invoice-chip">Invoice: INV-20260923-001</span>
+    <div>
+        <p class="eyebrow">Checkout</p>
+        <h1>New Bill</h1>
+        <p class="page-description">
+            Create a bill using existing products and prices.
+        </p>
+    </div>
+
+    <div class="invoice-number" id="invoiceNumber">
+        Invoice: -
+    </div>
 </section>
 
-<section class="billing-layout">
-  <article class="card">
-    <div class="card-header"><div><h2>Add Product</h2><p>Unit is inherited from the selected product.</p></div></div>
-    <div class="form-stack">
-      <label>Search Product<input type="search" placeholder="Search by product name..." id="billingSearch"></label>
-      <label>Selected Product<input value="Rice · kg · ₹60" readonly id="selectedProduct"></label>
-      <div class="two-column">
-        <label>Available Stock<input value="120 kg" readonly></label>
-        <label>Quantity<input type="number" value="2" min="1"></label>
-      </div>
-      <button class="button primary-button full-width">Add to Cart</button>
-    </div>
-    <div class="divider"></div>
-    <div class="card-header"><div><h2>Extra One-Time Item</h2><p>Only for this bill unless saved as a product later.</p></div></div>
-    <div class="form-stack">
-      <input placeholder="Item name">
-      <div class="two-column"><input placeholder="Price (₹)" type="number"><input placeholder="Quantity" type="number" min="1"></div>
-      <button class="button secondary-button full-width">Add Extra Item</button>
-    </div>
-  </article>
 
-  <article class="card">
-    <div class="card-header"><div><h2>Cart Items</h2><p>Demo cart</p></div><span class="demo-label">Frontend</span></div>
-    <div class="table-wrap">
-      <table><thead><tr><th>Product</th><th>Qty</th><th>Unit Price</th><th>Subtotal</th><th></th></tr></thead>
-      <tbody><tr><td>Rice <small>kg</small></td><td>2</td><td>₹60</td><td>₹120</td><td><button class="danger-text">Remove</button></td></tr>
-      <tr><td>Sugar <small>kg</small></td><td>1</td><td>₹45</td><td>₹45</td><td><button class="danger-text">Remove</button></td></tr></tbody></table>
+<!-- Bill Customer -->
+
+<section class="card bill-info-card">
+
+    <div class="bill-info-field">
+
+        <label for="billCustomerName">
+            Bill Name
+        </label>
+
+        <input
+            type="text"
+            id="billCustomerName"
+            value="User"
+            maxlength="100"
+            autocomplete="off"
+            placeholder="Enter customer name"
+        >
+
     </div>
-    <div class="bill-summary">
-      <div><span>Subtotal</span><strong>₹165</strong></div>
-      <label><span>Discount (₹)</span><input type="number" value="10" min="0"></label>
-      <div class="final-total"><span>Final Total</span><strong>₹155</strong></div>
-    </div>
-    <button class="button success-button full-width">▣ Generate Invoice</button>
-  </article>
+
 </section>
+
+
+<div class="billing-layout">
+
+    <!-- LEFT SIDE -->
+
+    <section class="card">
+
+        <div class="section-heading">
+            <div>
+                <h2>Add Product</h2>
+                <p>
+                    Unit and price are inherited from the selected product.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- Product Search -->
+
+        <div class="form-group">
+
+            <label for="productSearch">
+                Search Product
+            </label>
+
+            <input
+                type="search"
+                id="productSearch"
+                placeholder="Search by product name..."
+                autocomplete="off"
+            >
+
+            <div
+                id="productSuggestions"
+                class="product-suggestions hidden"
+            ></div>
+
+        </div>
+
+
+        <!-- Selected Product -->
+
+        <div class="form-group">
+
+            <label>Selected Product</label>
+
+            <div
+                id="selectedProduct"
+                class="selected-product"
+            >
+                No product selected
+            </div>
+
+        </div>
+
+
+        <div class="billing-fields">
+
+            <div class="form-group">
+
+                <label>Available Stock</label>
+
+                <div
+                    id="availableStock"
+                    class="readonly-field"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="productQuantity">
+                    Quantity
+                </label>
+
+                <input
+                    type="number"
+                    id="productQuantity"
+                    min="0.01"
+                    step="0.01"
+                    value="1"
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="button primary-button full-width"
+            id="addToCartBtn"
+        >
+            Add to Cart
+        </button>
+
+
+        <!-- Extra Item -->
+
+        <div class="billing-divider"></div>
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Extra One-Time Item</h2>
+
+                <p>
+                    This item is only for the current bill.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="extraItemName">
+                Item Name
+            </label>
+
+            <input
+                type="text"
+                id="extraItemName"
+                placeholder="e.g. Delivery Charge"
+                maxlength="100"
+            >
+
+        </div>
+
+
+        <div class="billing-fields">
+
+            <div class="form-group">
+
+                <label for="extraItemPrice">
+                    Price (₹)
+                </label>
+
+                <input
+                    type="number"
+                    id="extraItemPrice"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="extraItemQuantity">
+                    Quantity
+                </label>
+
+                <input
+                    type="number"
+                    id="extraItemQuantity"
+                    min="0.01"
+                    step="0.01"
+                    value="1"
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="button secondary-button full-width"
+            id="addExtraItemBtn"
+        >
+            Add Extra Item
+        </button>
+
+    </section>
+
+
+    <!-- RIGHT SIDE -->
+
+    <section class="card">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Cart Items</h2>
+
+                <p id="cartStatus">
+                    No items added.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="button secondary-button"
+                id="clearCartBtn"
+            >
+                Clear Cart
+            </button>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Unit</th>
+                        <th>Unit Price</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="cartTable">
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div
+            id="emptyCart"
+            class="empty-state"
+        >
+            No items in cart.
+        </div>
+
+
+        <!-- Bill Summary -->
+
+        <div class="bill-summary">
+
+            <div class="summary-row">
+
+                <span>Subtotal</span>
+
+                <strong id="subtotal">
+                    ₹0.00
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <label for="discount">
+                    Discount (₹)
+                </label>
+
+                <input
+                    type="number"
+                    id="discount"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
+
+
+            <div class="summary-row final-row">
+
+                <span>Final Total</span>
+
+                <strong id="finalTotal">
+                    ₹0.00
+                </strong>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="button success-button full-width"
+                id="generateInvoiceBtn"
+            >
+                Generate Invoice
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<div
+    id="billingToast"
+    class="product-toast hidden"
+></div>
+
 {% endblock %}
-{% block page_script %}<script src="/static/js/billing.js"></script>{% endblock %}
+
+
+{% block page_script %}
+
+<script src="/static/js/billing.js"></script>
+
+{% endblock %}

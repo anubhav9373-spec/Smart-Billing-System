@@ -1,24 +1,130 @@
 {% extends "base.html" %}
+
 {% block title %}Invoice | SmartBill{% endblock %}
 {% block mobile_title %}Invoice{% endblock %}
+
 {% block content %}
-<section class="page-header print-hide">
-  <div><p class="eyebrow">Document</p><h1>Invoice</h1><p class="page-description">Historical invoice preview.</p></div>
-  <div class="header-actions"><a class="button secondary-button" href="/sales.html">← Back</a><button class="button primary-button" onclick="window.print()">▣ Print Invoice</button></div>
+
+<section class="page-header no-print">
+
+    <div>
+        <p class="eyebrow">Billing</p>
+        <h1>Invoice</h1>
+        <p class="page-description">
+            Review the generated bill.
+        </p>
+    </div>
+
+    <button
+        type="button"
+        class="button primary-button"
+        onclick="window.print()"
+    >
+        🖨 Print
+    </button>
+
 </section>
+
+
 <section class="invoice-paper">
-  <header class="invoice-header">
-    <div><div class="invoice-brand"><span class="brand-mark">▣</span><strong>SmartBill</strong></div><p>Simple Billing, Smarter Business</p></div>
-    <div class="invoice-meta"><h2>INVOICE</h2><p><strong>INV-1005</strong></p><p>23 Sep 2026 · 11:42 AM</p></div>
-  </header>
-  <div class="invoice-divider"></div>
-  <div class="invoice-shop"><div><strong>Sharma General Store</strong><span>Quality Products, Better Living</span><span>123 Market Road, City · 000001</span><span>Phone: +91 98765 43210</span></div><div><span>Cashier: Admin</span></div></div>
-  <div class="table-wrap">
-    <table><thead><tr><th>#</th><th>Product / Item</th><th>Qty</th><th>Unit</th><th>Unit Price</th><th>Subtotal</th></tr></thead>
-    <tbody><tr><td>1</td><td>Rice</td><td>2</td><td>kg</td><td>₹60</td><td>₹120</td></tr><tr><td>2</td><td>Sugar</td><td>1</td><td>kg</td><td>₹45</td><td>₹45</td></tr><tr><td>3</td><td>Tea</td><td>1</td><td>pcs</td><td>₹120</td><td>₹120</td></tr></tbody></table>
-  </div>
-  <div class="invoice-totals"><div><span>Subtotal</span><strong>₹285</strong></div><div><span>Discount</span><strong>₹10</strong></div><div class="invoice-grand-total"><span>Total Amount</span><strong>₹275</strong></div></div>
-  <footer class="invoice-footer">Thank you for shopping with us!</footer>
+
+    <header class="invoice-header">
+
+        <div>
+            <h2>SmartBill</h2>
+            <p>Retail Billing System</p>
+        </div>
+
+        <div class="invoice-meta">
+
+            <strong id="invoiceNumber">
+                -
+            </strong>
+
+            <span id="invoiceDate">
+                -
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <div class="invoice-customer">
+
+        <span>Bill To</span>
+
+        <strong id="customerName">
+            User
+        </strong>
+
+    </div>
+
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Unit</th>
+                    <th>Unit Price</th>
+                    <th>Subtotal</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="invoiceItems">
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="invoice-total">
+
+        <div>
+            <span>Subtotal</span>
+            <strong id="invoiceSubtotal">
+                ₹0.00
+            </strong>
+        </div>
+
+
+        <div>
+            <span>Discount</span>
+            <strong id="invoiceDiscount">
+                ₹0.00
+            </strong>
+        </div>
+
+
+        <div class="grand-total">
+            <span>Total Amount</span>
+            <strong id="invoiceTotal">
+                ₹0.00
+            </strong>
+        </div>
+
+    </div>
+
+
+    <footer class="invoice-footer">
+        Thank you for shopping with SmartBill.
+    </footer>
+
 </section>
+
 {% endblock %}
-{% block page_script %}<script src="/static/js/invoice.js"></script>{% endblock %}
+
+
+{% block page_script %}
+
+<script src="/static/js/invoice.js"></script>
+
+{% endblock %}
