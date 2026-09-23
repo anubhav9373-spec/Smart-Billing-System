@@ -5,13 +5,13 @@
 
 {% block content %}
 
-<section class="page-header no-print">
+<section class="page-header invoice-page-header no-print">
 
     <div>
-        <p class="eyebrow">Billing</p>
+        <p class="eyebrow">BILLING</p>
         <h1>Invoice</h1>
         <p class="page-description">
-            Review the generated bill.
+            Generated bill ready for printing.
         </p>
     </div>
 
@@ -26,99 +26,167 @@
 </section>
 
 
-<section class="invoice-paper">
+<div class="receipt-preview">
 
-    <header class="invoice-header">
+    <section class="thermal-receipt">
 
-        <div>
+        <!-- Store Header -->
+
+        <header class="receipt-header">
+
+            <div class="receipt-logo">
+                SB
+            </div>
+
             <h2>SmartBill</h2>
-            <p>Retail Billing System</p>
+
+            <p class="receipt-subtitle">
+                Retail Billing System
+            </p>
+
+            <div class="receipt-store">
+                Sharma General Store
+            </div>
+
+            <p>
+                Simple Billing. Smarter Business.
+            </p>
+
+        </header>
+
+
+        <div class="receipt-divider">
+            --------------------------------
         </div>
 
-        <div class="invoice-meta">
 
-            <strong id="invoiceNumber">
-                -
+        <!-- Invoice Information -->
+
+        <section class="receipt-info">
+
+            <div>
+                <span>Invoice No</span>
+                <strong id="invoiceNumber">-</strong>
+            </div>
+
+            <div>
+                <span>Date & Time</span>
+                <strong id="invoiceDate">-</strong>
+            </div>
+
+            <div>
+                <span>Bill To</span>
+                <strong id="customerName">User</strong>
+            </div>
+
+        </section>
+
+
+        <div class="receipt-divider">
+            --------------------------------
+        </div>
+
+
+        <!-- Items -->
+
+        <section class="receipt-items">
+
+            <div class="receipt-items-header">
+
+                <span class="item-name">
+                    ITEM
+                </span>
+
+                <span>
+                    QTY
+                </span>
+
+                <span>
+                    RATE
+                </span>
+
+                <span>
+                    AMOUNT
+                </span>
+
+            </div>
+
+
+            <div
+                id="invoiceItems"
+                class="receipt-items-body"
+            >
+            </div>
+
+        </section>
+
+
+        <div class="receipt-divider">
+            --------------------------------
+        </div>
+
+
+        <!-- Summary -->
+
+        <section class="receipt-summary">
+
+            <div>
+                <span>Subtotal</span>
+
+                <strong id="invoiceSubtotal">
+                    ₹0.00
+                </strong>
+            </div>
+
+
+            <div>
+                <span>Discount</span>
+
+                <strong id="invoiceDiscount">
+                    ₹0.00
+                </strong>
+            </div>
+
+
+            <div class="receipt-total">
+
+                <span>TOTAL</span>
+
+                <strong id="invoiceTotal">
+                    ₹0.00
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <div class="receipt-divider">
+            --------------------------------
+        </div>
+
+
+        <!-- Footer -->
+
+        <footer class="receipt-footer">
+
+            <strong>
+                Thank You!
             </strong>
 
-            <span id="invoiceDate">
-                -
+            <span>
+                Visit Again
             </span>
 
-        </div>
+            <small>
+                Powered by SmartBill
+            </small>
 
-    </header>
+        </footer>
 
+    </section>
 
-    <div class="invoice-customer">
-
-        <span>Bill To</span>
-
-        <strong id="customerName">
-            User
-        </strong>
-
-    </div>
-
-
-    <div class="table-wrap">
-
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>#</th>
-                    <th>Item</th>
-                    <th>Qty</th>
-                    <th>Unit</th>
-                    <th>Unit Price</th>
-                    <th>Subtotal</th>
-                </tr>
-
-            </thead>
-
-            <tbody id="invoiceItems">
-            </tbody>
-
-        </table>
-
-    </div>
-
-
-    <div class="invoice-total">
-
-        <div>
-            <span>Subtotal</span>
-            <strong id="invoiceSubtotal">
-                ₹0.00
-            </strong>
-        </div>
-
-
-        <div>
-            <span>Discount</span>
-            <strong id="invoiceDiscount">
-                ₹0.00
-            </strong>
-        </div>
-
-
-        <div class="grand-total">
-            <span>Total Amount</span>
-            <strong id="invoiceTotal">
-                ₹0.00
-            </strong>
-        </div>
-
-    </div>
-
-
-    <footer class="invoice-footer">
-        Thank you for shopping with SmartBill.
-    </footer>
-
-</section>
+</div>
 
 {% endblock %}
 

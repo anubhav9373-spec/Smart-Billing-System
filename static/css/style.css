@@ -475,3 +475,451 @@ a{text-decoration:none;color:inherit}
     }
 
 }
+
+/* =========================================================
+   THERMAL RECEIPT INVOICE
+========================================================= */
+
+.receipt-preview {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px 0 40px;
+}
+
+
+.thermal-receipt {
+    width: 380px;
+    box-sizing: border-box;
+    padding: 28px 24px;
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #dfe3e8;
+    border-radius: 4px;
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.10);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+}
+
+
+/* -------------------------
+   Header
+------------------------- */
+
+.receipt-header {
+    text-align: center;
+}
+
+
+.receipt-logo {
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #1769e0;
+    color: white;
+
+    border-radius: 8px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+
+.receipt-header h2 {
+    margin: 0;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+
+.receipt-subtitle {
+    margin: 3px 0 14px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    color: #666666;
+
+    font-size: 10px;
+}
+
+
+.receipt-store {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.receipt-header p:last-child {
+    margin: 5px 0 0;
+
+    color: #555555;
+
+    font-size: 10px;
+}
+
+
+/* -------------------------
+   Divider
+------------------------- */
+
+.receipt-divider {
+    overflow: hidden;
+
+    margin: 16px 0;
+
+    color: #777777;
+
+    font-size: 10px;
+
+    line-height: 1;
+    white-space: nowrap;
+}
+
+
+/* -------------------------
+   Invoice information
+------------------------- */
+
+.receipt-info {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    font-size: 11px;
+}
+
+
+.receipt-info > div {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 8px;
+}
+
+
+.receipt-info span {
+    color: #555555;
+}
+
+
+.receipt-info strong {
+    text-align: right;
+    word-break: break-word;
+}
+
+
+/* -------------------------
+   Items
+------------------------- */
+
+.receipt-items {
+    width: 100%;
+}
+
+
+.receipt-items-header,
+.receipt-item {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        38px
+        58px
+        68px;
+
+    gap: 4px;
+
+    align-items: center;
+
+    font-size: 10px;
+}
+
+
+.receipt-items-header {
+    padding-bottom: 7px;
+
+    border-bottom: 1px dashed #999999;
+
+    font-weight: 700;
+}
+
+
+.receipt-items-header span:not(:first-child),
+.receipt-item span:not(:first-child) {
+    text-align: right;
+}
+
+
+.receipt-items-body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.receipt-item {
+    padding: 8px 0;
+
+    border-bottom: 1px dotted #cccccc;
+}
+
+
+.receipt-item:last-child {
+    border-bottom: 0;
+}
+
+
+.receipt-item .item-name {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-weight: 700;
+}
+
+
+.receipt-item .item-unit {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #777777;
+
+    font-size: 9px;
+    font-weight: 400;
+}
+
+
+/* -------------------------
+   Summary
+------------------------- */
+
+.receipt-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    font-size: 11px;
+}
+
+
+.receipt-summary > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+
+.receipt-summary span {
+    color: #444444;
+}
+
+
+.receipt-summary strong {
+    text-align: right;
+}
+
+
+.receipt-total {
+    margin-top: 5px;
+    padding-top: 10px;
+
+    border-top: 2px solid #111111;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+
+.receipt-total strong {
+    font-size: 17px;
+}
+
+
+/* -------------------------
+   Footer
+------------------------- */
+
+.receipt-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 5px;
+
+    text-align: center;
+}
+
+
+.receipt-footer strong {
+    font-size: 13px;
+}
+
+
+.receipt-footer span {
+    font-size: 10px;
+}
+
+
+.receipt-footer small {
+    margin-top: 8px;
+
+    color: #888888;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   PRINT / 80MM THERMAL PRINTER
+========================================================= */
+
+@media print {
+
+    @page {
+        size: 80mm auto;
+        margin: 0;
+    }
+
+
+    html,
+    body {
+        width: 80mm;
+        margin: 0 !important;
+        padding: 0 !important;
+
+        background: white !important;
+    }
+
+
+    body {
+        font-family:
+            "Courier New",
+            Courier,
+            monospace;
+    }
+
+
+    .sidebar,
+    .main-nav,
+    .mobile-nav,
+    .page-header,
+    .no-print {
+        display: none !important;
+    }
+
+
+    .app-shell,
+    .main-content,
+    .content,
+    main {
+        width: 80mm !important;
+        min-width: 80mm !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+
+    .receipt-preview {
+        display: block;
+
+        width: 80mm;
+
+        margin: 0;
+        padding: 0;
+    }
+
+
+    .thermal-receipt {
+        width: 80mm;
+
+        min-height: auto;
+
+        margin: 0;
+        padding: 8mm 5mm;
+
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+
+    .receipt-logo {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+
+    .receipt-header h2 {
+        font-size: 20px;
+    }
+
+
+    .receipt-items-header,
+    .receipt-item {
+        font-size: 9px;
+    }
+
+
+    .receipt-info {
+        font-size: 9px;
+    }
+
+
+    .receipt-summary {
+        font-size: 10px;
+    }
+
+
+    .receipt-total {
+        font-size: 13px;
+    }
+
+
+    .receipt-footer {
+        font-size: 9px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE RECEIPT PREVIEW
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .receipt-preview {
+        padding: 5px 0 30px;
+    }
+
+
+    .thermal-receipt {
+        width: min(380px, 100%);
+
+        padding: 24px 18px;
+
+        box-shadow: none;
+    }
+
+}

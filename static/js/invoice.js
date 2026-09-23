@@ -5,9 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     const savedBill =
-        localStorage.getItem(
-            CURRENT_BILL_KEY
-        );
+        localStorage.getItem(CURRENT_BILL_KEY);
 
 
     if (!savedBill) {
@@ -17,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ).textContent = "No invoice available.";
 
         return;
-
     }
 
 
@@ -26,8 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
 
-        bill =
-            JSON.parse(savedBill);
+        bill = JSON.parse(savedBill);
 
     } catch (error) {
 
@@ -37,14 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         return;
-
     }
 
 
     document.getElementById(
         "invoiceNumber"
     ).textContent =
-        bill.invoiceNumber;
+        bill.invoiceNumber || "-";
 
 
     document.getElementById(
@@ -68,46 +63,53 @@ document.addEventListener("DOMContentLoaded", () => {
     itemsContainer.innerHTML = "";
 
 
-    bill.items.forEach(
-        (item, index) => {
-
-            const row =
-                document.createElement("tr");
+    if (!Array.isArray(bill.items)) {
+        return;
+    }
 
 
-            row.innerHTML = `
+    bill.items.forEach(item => {
 
-                <td>
-                    ${index + 1}
-                </td>
+        const row =
+            document.createElement("div");
 
-                <td>
-                    ${escapeHtml(item.name)}
-                </td>
-
-                <td>
-                    ${item.quantity}
-                </td>
-
-                <td>
-                    ${item.unit}
-                </td>
-
-                <td>
-                    ₹${Number(item.price).toFixed(2)}
-                </td>
-
-                <td>
-                    ₹${Number(item.subtotal).toFixed(2)}
-                </td>
-
-            `;
+        row.className =
+            "receipt-item";
 
 
-            itemsContainer.appendChild(row);
+        const subtotal =
+            Number(item.price) *
+            Number(item.quantity);
 
-        }
-    );
+
+        row.innerHTML = `
+
+            <span class="item-name">
+                ${escapeHtml(item.name)}
+
+                <small class="item-unit">
+                    ${escapeHtml(item.unit)}
+                </small>
+            </span>
+
+            <span>
+                ${item.quantity}
+            </span>
+
+            <span>
+                ₹${Number(item.price).toFixed(2)}
+            </span>
+
+            <span>
+                ₹${subtotal.toFixed(2)}
+            </span>
+
+        `;
+
+
+        itemsContainer.appendChild(row);
+
+    });
 
 
     document.getElementById(
@@ -130,12 +132,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function formatCurrency(value) {
 
-        return `₹${Number(value).toFixed(2)}`;
+        return `₹${Number(value || 0).toFixed(2)}`;
 
     }
 
 
     function formatDate(value) {
+
+        if (!value) {
+            return "-";
+        }
+
 
         const date =
             new Date(value);
@@ -144,8 +151,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return date.toLocaleString(
             "en-IN",
             {
-                dateStyle: "medium",
-                timeStyle: "short"
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
             }
         );
 
