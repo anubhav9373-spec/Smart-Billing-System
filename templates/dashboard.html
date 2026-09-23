@@ -1,63 +1,245 @@
 {% extends "base.html" %}
+
 {% block title %}Dashboard | SmartBill{% endblock %}
 {% block mobile_title %}Dashboard{% endblock %}
+
 {% block content %}
+
 <section class="page-header">
-  <div>
-    <p class="eyebrow">Overview</p>
-    <h1>Dashboard</h1>
-    <p class="page-description">A quick view of today's retail activity.</p>
-  </div>
-  <span class="date-chip">Tue, 23 Sep 2026</span>
+
+    <div>
+        <p class="eyebrow">OVERVIEW</p>
+
+        <h1>Dashboard</h1>
+
+        <p class="page-description">
+            Track your store's sales and product activity.
+        </p>
+    </div>
+
 </section>
 
-<section class="metric-grid">
-  <article class="metric-card success"><span>Today's Sales</span><strong>₹ 12,450</strong><small>+18% vs yesterday</small></article>
-  <article class="metric-card primary"><span>Bills Today</span><strong>28</strong><small>4 more than yesterday</small></article>
-  <article class="metric-card warning"><span>Total Products</span><strong>156</strong><small>8 need attention</small></article>
-  <article class="metric-card danger"><span>Low Stock Items</span><strong>8</strong><small>Requires review</small></article>
+
+<!-- Summary Metrics -->
+
+<section class="dashboard-metrics">
+
+    <article class="dashboard-metric-card">
+
+        <div class="metric-icon">
+            ₹
+        </div>
+
+        <div>
+            <span class="metric-label">
+                Today's Sales
+            </span>
+
+            <strong id="todaySales">
+                ₹0.00
+            </strong>
+        </div>
+
+    </article>
+
+
+    <article class="dashboard-metric-card">
+
+        <div class="metric-icon">
+            #
+        </div>
+
+        <div>
+            <span class="metric-label">
+                Total Bills
+            </span>
+
+            <strong id="totalBills">
+                0
+            </strong>
+        </div>
+
+    </article>
+
+
+    <article class="dashboard-metric-card">
+
+        <div class="metric-icon">
+            ▦
+        </div>
+
+        <div>
+            <span class="metric-label">
+                Total Products
+            </span>
+
+            <strong id="totalProducts">
+                0
+            </strong>
+        </div>
+
+    </article>
+
+
+    <article class="dashboard-metric-card">
+
+        <div class="metric-icon warning">
+            !
+        </div>
+
+        <div>
+            <span class="metric-label">
+                Low Stock Items
+            </span>
+
+            <strong id="lowStockItems">
+                0
+            </strong>
+        </div>
+
+    </article>
+
 </section>
 
-<section class="dashboard-grid">
-  <article class="card chart-card">
-    <div class="card-header"><div><h2>Sales Trend</h2><p>Last 7 days</p></div><span class="demo-label">Demo data</span></div>
-    <div class="chart-placeholder"><div class="chart-line"></div><span>Chart area</span></div>
-  </article>
 
-  <article class="card">
-    <div class="card-header"><div><h2>Top Selling Products</h2><p>By quantity sold</p></div></div>
-    <div class="rank-list">
-      <div><span>01</span><strong>Rice</strong><b>120</b></div>
-      <div><span>02</span><strong>Sugar</strong><b>90</b></div>
-      <div><span>03</span><strong>Tea</strong><b>75</b></div>
-      <div><span>04</span><strong>Biscuits</strong><b>60</b></div>
-      <div><span>05</span><strong>Cooking Oil</strong><b>50</b></div>
-    </div>
-  </article>
+<!-- Main Dashboard Grid -->
 
-  <article class="card table-card">
-    <div class="card-header"><div><h2>Recent Transactions</h2><p>Latest bills</p></div><a class="text-link" href="/sales.html">View all</a></div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Invoice</th><th>Date & Time</th><th>Amount</th></tr></thead>
-        <tbody>
-          <tr><td>INV-1005</td><td>23 Sep 2026 11:42 AM</td><td>₹ 520</td></tr>
-          <tr><td>INV-1004</td><td>23 Sep 2026 11:15 AM</td><td>₹ 1,240</td></tr>
-          <tr><td>INV-1003</td><td>23 Sep 2026 10:50 AM</td><td>₹ 310</td></tr>
-          <tr><td>INV-1002</td><td>23 Sep 2026 10:22 AM</td><td>₹ 890</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </article>
+<section class="dashboard-main-grid">
 
-  <article class="card insight-card">
-    <div class="card-header"><div><h2>Smart Insights</h2><p>Rule-based demo indicators</p></div></div>
-    <div class="insight-list">
-      <div class="insight"><span class="insight-icon success">↑</span><p>Sales are higher than the previous period.</p></div>
-      <div class="insight"><span class="insight-icon warning">★</span><p>Rice is currently the best-selling product.</p></div>
-      <div class="insight"><span class="insight-icon danger">!</span><p>8 products require stock attention.</p></div>
-    </div>
-  </article>
+
+    <!-- Sales Trend -->
+
+    <article class="card dashboard-chart-card">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Sales Trend</h2>
+
+                <p>
+                    Sales activity over the last 7 days.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="dashboard-chart-container">
+
+            <canvas id="salesTrendChart"></canvas>
+
+        </div>
+
+    </article>
+
+
+    <!-- Top Products -->
+
+    <article class="card dashboard-top-products">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Top Selling Products</h2>
+
+                <p>
+                    Products sold by quantity.
+                </p>
+            </div>
+
+        </div>
+
+        <div id="topProductsList">
+
+            <!-- Generated by JavaScript -->
+
+        </div>
+
+    </article>
+
 </section>
+
+
+<!-- Bottom Dashboard Grid -->
+
+<section class="dashboard-bottom-grid">
+
+
+    <!-- Recent Transactions -->
+
+    <article class="card">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Recent Transactions</h2>
+
+                <p>
+                    Latest generated bills.
+                </p>
+            </div>
+
+            <a
+                href="/sales"
+                class="text-link"
+            >
+                View All
+            </a>
+
+        </div>
+
+
+        <div class="recent-transactions">
+
+            <div id="recentTransactions">
+
+                <!-- Generated by JavaScript -->
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- Smart Insights -->
+
+    <article class="card">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Smart Insights</h2>
+
+                <p>
+                    Rule-based business observations.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div id="smartInsights">
+
+            <!-- Generated by JavaScript -->
+
+        </div>
+
+    </article>
+
+</section>
+
+
 {% endblock %}
-{% block page_script %}<script src="/static/js/dashboard.js"></script>{% endblock %}
+
+
+{% block page_script %}
+
+<!-- Chart.js -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+
+<script src="/static/js/dashboard.js"></script>
+
+{% endblock %}
