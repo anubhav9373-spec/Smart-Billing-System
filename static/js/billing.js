@@ -799,8 +799,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         localStorage.setItem(
-            CURRENT_BILL_KEY,
-            JSON.stringify(bill)
+          "smartbill_current_bill",
+          JSON.stringify(bill)
+        );
+
+
+        const existingSales =
+          JSON.parse(
+            localStorage.getItem(
+              "smartbill_sales"
+            )
+          ) || [];
+
+
+        existingSales.unshift(bill);
+
+
+        localStorage.setItem(
+          "smartbill_sales",
+          JSON.stringify(existingSales)
         );
 
 

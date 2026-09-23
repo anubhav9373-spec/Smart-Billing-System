@@ -923,3 +923,223 @@ a{text-decoration:none;color:inherit}
     }
 
 }
+
+/* =========================================================
+   SALES HISTORY
+========================================================= */
+
+.sales-filters {
+    display: grid;
+
+    grid-template-columns:
+        minmax(240px, 1fr)
+        180px
+        auto;
+
+    gap: 14px;
+
+    align-items: end;
+
+    margin-bottom: 20px;
+}
+
+
+.sales-filters label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: var(--text-secondary);
+}
+
+
+.sales-filters input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.sales-summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+
+.summary-card {
+    padding: 20px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+
+.summary-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+
+.summary-card strong {
+    font-size: 24px;
+}
+
+
+.sales-history-card {
+    overflow: hidden;
+}
+
+
+.sales-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.sales-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 720px;
+}
+
+
+.sales-table th,
+.sales-table td {
+    padding: 15px 14px;
+
+    border-bottom: 1px solid var(--border);
+
+    text-align: left;
+
+    font-size: 13px;
+}
+
+
+.sales-table th {
+    color: var(--text-secondary);
+
+    background: var(--background);
+
+    font-weight: 600;
+}
+
+
+.sales-table tbody tr {
+    transition:
+        background 0.15s ease;
+}
+
+
+.sales-table tbody tr:hover {
+    background: rgba(0, 0, 0, 0.025);
+}
+
+
+.small-button {
+    padding: 8px 12px;
+
+    font-size: 12px;
+}
+
+
+.sales-empty-state {
+    padding: 50px 20px;
+
+    text-align: center;
+}
+
+
+.sales-empty-state[hidden] {
+    display: none;
+}
+
+
+.empty-icon {
+    margin-bottom: 10px;
+
+    font-size: 32px;
+}
+
+
+.sales-empty-state h3 {
+    margin: 0 0 6px;
+
+    font-size: 16px;
+}
+
+
+.sales-empty-state p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   SALES HISTORY — MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .sales-filters {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    .sales-filters .button {
+        width: 100%;
+    }
+
+
+    .sales-summary-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+
+    .summary-card {
+        padding: 16px;
+    }
+
+
+    .summary-card strong {
+        font-size: 20px;
+    }
+
+
+    /*
+       On mobile the table remains horizontally
+       scrollable instead of squeezing columns.
+    */
+
+    .sales-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+}
