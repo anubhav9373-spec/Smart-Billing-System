@@ -1,24 +1,531 @@
 {% extends "base.html" %}
+
 {% block title %}Analytics | SmartBill{% endblock %}
 {% block mobile_title %}Analytics{% endblock %}
+
 {% block content %}
-<section class="page-header">
-  <div><p class="eyebrow">Sales Intelligence</p><h1>Analytics</h1><p class="page-description">Understand sales patterns with demo data.</p></div>
-  <select class="period-select"><option>Last 30 Days</option><option>Last 7 Days</option><option>This Month</option></select>
+
+<!-- =====================================================
+     ANALYTICS HEADER
+===================================================== -->
+
+<section class="analytics-page-header">
+
+    <div>
+
+        <p class="eyebrow">
+            BUSINESS INSIGHTS
+        </p>
+
+        <h1>
+            Sales Analytics
+        </h1>
+
+        <p class="analytics-page-subtitle">
+            Understand your sales performance, products and business activity.
+        </p>
+
+    </div>
+
+
+    <div class="analytics-live-status">
+
+        <span></span>
+
+        Live Data
+
+    </div>
+
 </section>
-<section class="metric-grid">
-  <article class="metric-card success"><span>Total Sales</span><strong>₹ 3,48,500</strong><small>Demo data</small></article>
-  <article class="metric-card primary"><span>Total Bills</span><strong>620</strong><small>Selected period</small></article>
-  <article class="metric-card warning"><span>Average Bill Value</span><strong>₹ 562</strong><small>Sales ÷ bills</small></article>
-  <article class="metric-card danger"><span>Low Stock Items</span><strong>12</strong><small>Needs attention</small></article>
+
+
+<!-- =====================================================
+     KPI CARDS
+===================================================== -->
+
+<section class="analytics-kpi-grid">
+
+
+    <!-- TOTAL SALES -->
+
+    <article class="analytics-kpi-card sales-card">
+
+        <div class="analytics-kpi-icon blue">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path d="M12 3v18"></path>
+                <path d="M17 7.5c0-1.7-2.2-3-5-3s-5 1.3-5 3 2.2 3 5 3 5 1.3 5 3-2.2 3-5 3-5-1.3-5-3"></path>
+            </svg>
+
+        </div>
+
+
+        <div class="analytics-kpi-content">
+
+            <span>
+                Total Sales
+            </span>
+
+            <strong id="analyticsTotalSales">
+                ₹0.00
+            </strong>
+
+        </div>
+
+
+        <div class="analytics-kpi-decoration blue"></div>
+
+    </article>
+
+
+    <!-- TOTAL BILLS -->
+
+    <article class="analytics-kpi-card bills-card">
+
+        <div class="analytics-kpi-icon purple">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <rect
+                    x="6"
+                    y="3"
+                    width="12"
+                    height="18"
+                    rx="2"
+                ></rect>
+
+                <path d="M9 8h6"></path>
+                <path d="M9 12h6"></path>
+                <path d="M9 16h4"></path>
+            </svg>
+
+        </div>
+
+
+        <div class="analytics-kpi-content">
+
+            <span>
+                Total Bills
+            </span>
+
+            <strong id="analyticsTotalBills">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="analytics-kpi-decoration purple"></div>
+
+    </article>
+
+
+    <!-- AVERAGE BILL -->
+
+    <article class="analytics-kpi-card average-card">
+
+        <div class="analytics-kpi-icon green">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path d="M4 19V9"></path>
+                <path d="M10 19V5"></path>
+                <path d="M16 19v-7"></path>
+                <path d="M22 19V3"></path>
+            </svg>
+
+        </div>
+
+
+        <div class="analytics-kpi-content">
+
+            <span>
+                Average Bill Value
+            </span>
+
+            <strong id="analyticsAverageBill">
+                ₹0.00
+            </strong>
+
+        </div>
+
+
+        <div class="analytics-kpi-decoration green"></div>
+
+    </article>
+
 </section>
-<section class="analytics-grid">
-  <article class="card chart-card large"><div class="card-header"><div><h2>Sales Trend</h2><p>Daily sales</p></div></div><div class="chart-placeholder tall"><div class="bar-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></article>
-  <article class="card"><div class="card-header"><div><h2>Top Products</h2><p>Quantity sold</p></div></div><div class="rank-list"><div><span>01</span><strong>Rice</strong><b>320</b></div><div><span>02</span><strong>Sugar</strong><b>280</b></div><div><span>03</span><strong>Tea</strong><b>210</b></div><div><span>04</span><strong>Biscuits</strong><b>180</b></div><div><span>05</span><strong>Oil</strong><b>150</b></div></div></article>
-  <article class="card category-card"><div class="card-header"><div><h2>Category-wise Sales</h2><p>Selected period</p></div></div><div class="donut-placeholder"></div><div class="legend"><span>Groceries 45%</span><span>Beverages 20%</span><span>Snacks 15%</span><span>Household 10%</span><span>Others 10%</span></div></article>
+
+
+<!-- =====================================================
+     MAIN ANALYTICS AREA
+===================================================== -->
+
+<section class="analytics-main-grid">
+
+
+    <!-- SALES TREND -->
+
+    <article class="analytics-panel sales-trend-panel">
+
+        <div class="analytics-panel-header">
+
+            <div class="analytics-title-group">
+
+                <div class="analytics-small-icon blue">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M4 19V9"></path>
+                        <path d="M10 19V5"></path>
+                        <path d="M16 19v-8"></path>
+                        <path d="M22 19V3"></path>
+                    </svg>
+
+                </div>
+
+
+                <div>
+
+                    <span class="analytics-label">
+                        SALES PERFORMANCE
+                    </span>
+
+                    <h2>
+                        Sales Trend
+                    </h2>
+
+                    <p>
+                        Daily sales activity over the last 7 days.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-chart-badge">
+
+                <span></span>
+
+                Sales
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-chart-container">
+
+            <canvas id="analyticsSalesChart"></canvas>
+
+        </div>
+
+    </article>
+
+
+    <!-- PERFORMANCE SNAPSHOT -->
+
+    <article class="analytics-panel performance-panel">
+
+        <div class="analytics-panel-header">
+
+            <div class="analytics-title-group">
+
+                <div class="analytics-small-icon purple">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M4 13a8 8 0 1 1 16 0"></path>
+                        <path d="M12 13l5-5"></path>
+                        <path d="M12 13h.01"></path>
+                    </svg>
+
+                </div>
+
+
+                <div>
+
+                    <span class="analytics-label">
+                        SALES SNAPSHOT
+                    </span>
+
+                    <h2>
+                        Performance Overview
+                    </h2>
+
+                    <p>
+                        Quick view of your current sales activity.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="performance-list">
+
+
+            <div class="performance-item">
+
+                <div class="performance-icon green">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M4 7h16"></path>
+                        <path d="M4 7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"></path>
+                        <path d="M16 13h.01"></path>
+                    </svg>
+
+                </div>
+
+
+                <div class="performance-info">
+
+                    <span>
+                        Revenue generated
+                    </span>
+
+                    <strong id="snapshotRevenue">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div class="performance-icon purple">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <rect
+                            x="6"
+                            y="3"
+                            width="12"
+                            height="18"
+                            rx="2"
+                        ></rect>
+
+                        <path d="M9 8h6"></path>
+                        <path d="M9 12h6"></path>
+                        <path d="M9 16h4"></path>
+                    </svg>
+
+                </div>
+
+
+                <div class="performance-info">
+
+                    <span>
+                        Bills generated
+                    </span>
+
+                    <strong id="snapshotBills">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div class="performance-icon orange">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M4 17l6-6 4 4 6-8"></path>
+                        <path d="M16 7h4v4"></path>
+                    </svg>
+
+                </div>
+
+
+                <div class="performance-info">
+
+                    <span>
+                        Average transaction
+                    </span>
+
+                    <strong id="snapshotAverage">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
 </section>
+
+
+<!-- =====================================================
+     LOWER ANALYTICS
+===================================================== -->
+
+<section class="analytics-lower-grid">
+
+
+    <!-- TOP PRODUCTS -->
+
+    <article class="analytics-panel">
+
+        <div class="analytics-panel-header">
+
+            <div class="analytics-title-group">
+
+                <div class="analytics-small-icon orange">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M8 21h8"></path>
+                        <path d="M9 17h6"></path>
+                        <path d="M7 4h10"></path>
+                        <path d="M8 4v5a4 4 0 0 0 8 0V4"></path>
+                        <path d="M5 4h2"></path>
+                        <path d="M17 4h2"></path>
+                    </svg>
+
+                </div>
+
+
+                <div>
+
+                    <span class="analytics-label">
+                        PRODUCTS
+                    </span>
+
+                    <h2>
+                        Top Products
+                    </h2>
+
+                    <p>
+                        Best-selling products by quantity.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="analyticsTopProducts"
+            class="analytics-products-list"
+        ></div>
+
+    </article>
+
+
+    <!-- CATEGORY SALES -->
+
+    <article class="analytics-panel">
+
+        <div class="analytics-panel-header">
+
+            <div class="analytics-title-group">
+
+                <div class="analytics-small-icon purple">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M12 3l8 4-8 4-8-4 8-4z"></path>
+                        <path d="M4 12l8 4 8-4"></path>
+                        <path d="M4 17l8 4 8-4"></path>
+                    </svg>
+
+                </div>
+
+
+                <div>
+
+                    <span class="analytics-label">
+                        BREAKDOWN
+                    </span>
+
+                    <h2>
+                        Category-wise Sales
+                    </h2>
+
+                    <p>
+                        Sales distribution across categories.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="analyticsCategorySales"
+            class="category-sales-container"
+        ></div>
+
+    </article>
+
+</section>
+
+
 {% endblock %}
+
+
 {% block page_script %}
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script src="/static/js/analytics.js"></script>
+
 {% endblock %}
