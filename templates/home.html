@@ -1,0 +1,1011 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+SmartBill — Modern Billing for Every Retailer
+{% endblock %}
+
+
+{% block mobile_title %}
+Home
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/home.css') }}"
+>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="smartbill-home">
+
+  <!--
+    IMPORTANT:
+
+    Home content starts here.
+
+    Sidebar is NOT written here because
+    sidebar already comes from base.html.
+  -->
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero">
+
+    <div class="hero-bg-orb orb-one"></div>
+
+    <div class="hero-bg-orb orb-two"></div>
+
+
+    <!-- Hero Text -->
+
+    <div class="hero-copy">
+
+      <div class="hero-badge">
+
+        <span>✦</span>
+
+        Smart Billing
+
+        <b>•</b>
+
+        Better Business
+
+        <b>•</b>
+
+        Brighter Growth
+
+      </div>
+
+
+      <h1>
+
+        Modern Billing
+
+        <br>
+
+        for
+
+        <span>
+          Every Retailer
+        </span>
+
+      </h1>
+
+
+      <p>
+
+        SmartBill is a simple yet powerful retail billing
+        and sales insight system designed for all types of
+        small businesses. Manage products, create bills,
+        track sales, monitor stock and grow your business
+        with clear insights.
+
+      </p>
+
+
+      <div class="hero-actions">
+
+        <a
+          href="/dashboard"
+          class="btn-primary"
+        >
+
+          Start Using SmartBill
+
+          <span>
+            →
+          </span>
+
+        </a>
+
+
+        <a
+          href="#how-it-works"
+          class="btn-outline"
+        >
+
+          <span>
+            ▶
+          </span>
+
+          See How It Works
+
+        </a>
+
+      </div>
+
+
+      <div class="hero-checks">
+
+        <span>
+          <b>✓</b>
+          Easy to Use
+        </span>
+
+        <span>
+          <b>✓</b>
+          No Technical Skills
+        </span>
+
+        <span>
+          <b>✓</b>
+          Works for Any Retail Business
+        </span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Hero Dashboard -->
+
+    <div class="hero-visual">
+
+      <img
+        src="{{ url_for(
+          'static',
+          filename='assets/hero-dashboard.png'
+        ) }}"
+        alt="SmartBill dashboard preview"
+      >
+
+
+      <div class="hero-status status-stock">
+
+        <span>
+          ✓
+        </span>
+
+        Stock Updated!
+
+      </div>
+
+
+      <div class="hero-status status-bill">
+
+        <span>
+          ✓
+        </span>
+
+        Bill Generated!
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       BENEFITS
+  ========================== -->
+
+  <section class="benefits">
+
+    <div class="benefit-card">
+
+      <img
+        src="{{ url_for(
+          'static',
+          filename='assets/benefit-faster.png'
+        ) }}"
+        alt=""
+      >
+
+      <div>
+
+        <strong>
+          Faster Billing
+        </strong>
+
+        <span>
+          Create bills in seconds
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="benefit-card">
+
+      <img
+        src="{{ url_for(
+          'static',
+          filename='assets/benefit-insights.png'
+        ) }}"
+        alt=""
+      >
+
+      <div>
+
+        <strong>
+          Clear Insights
+        </strong>
+
+        <span>
+          Understand your sales
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="benefit-card">
+
+      <img
+        src="{{ url_for(
+          'static',
+          filename='assets/benefit-inventory.png'
+        ) }}"
+        alt=""
+      >
+
+      <div>
+
+        <strong>
+          Smarter Inventory
+        </strong>
+
+        <span>
+          Keep track of stock
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="benefit-card">
+
+      <img
+        src="{{ url_for(
+          'static',
+          filename='assets/benefit-growth.png'
+        ) }}"
+        alt=""
+      >
+
+      <div>
+
+        <strong>
+          Business Growth
+        </strong>
+
+        <span>
+          Make informed decisions
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       FEATURES
+  ========================== -->
+
+  <section
+    class="home-section"
+    id="features"
+  >
+
+    <div class="home-section-heading">
+
+      <span>
+        KEY FEATURES
+      </span>
+
+      <h2>
+
+        Everything You Need
+
+        <br>
+
+        to Run Your
+
+        <strong>
+          Retail Business
+        </strong>
+
+      </h2>
+
+
+      <p>
+        Powerful features designed to simplify
+        your billing, inventory and sales management.
+      </p>
+
+    </div>
+
+
+
+    <div class="feature-grid">
+
+
+      <article class="feature-card">
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/feature-product.png'
+          ) }}"
+          alt=""
+        >
+
+        <h3>
+          Product Management
+        </h3>
+
+        <p>
+          Add, edit and manage products with
+          units, prices and stock.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature-card">
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/feature-billing.png'
+          ) }}"
+          alt=""
+        >
+
+        <h3>
+          Fast & Easy Billing
+        </h3>
+
+        <p>
+          Create bills quickly with product
+          search and extra bill items.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature-card">
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/feature-stock.png'
+          ) }}"
+          alt=""
+        >
+
+        <h3>
+          Automatic Stock Update
+        </h3>
+
+        <p>
+          Track stock as products are sold
+          through billing.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature-card">
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/feature-invoice.png'
+          ) }}"
+          alt=""
+        >
+
+        <h3>
+          Invoice Generation
+        </h3>
+
+        <p>
+          Generate professional invoices with
+          automatic invoice numbers.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature-card">
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/feature-sales.png'
+          ) }}"
+          alt=""
+        >
+
+        <h3>
+          Sales History
+        </h3>
+
+        <p>
+          View and search previous sales
+          transactions easily.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature-card">
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/feature-analytics.png'
+          ) }}"
+          alt=""
+        >
+
+        <h3>
+          Analytics & Reports
+        </h3>
+
+        <p>
+          Understand your business with
+          useful charts and insights.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature-card">
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/feature-alert.png'
+          ) }}"
+          alt=""
+        >
+
+        <h3>
+          Low-Stock Alerts
+        </h3>
+
+        <p>
+          Identify products approaching
+          low stock levels.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature-card">
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/feature-settings.png'
+          ) }}"
+          alt=""
+        >
+
+        <h3>
+          Customizable Settings
+        </h3>
+
+        <p>
+          Configure your store, invoice
+          and application preferences.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       HOW IT WORKS
+  ========================== -->
+
+  <section
+    class="how-it-works"
+    id="how-it-works"
+  >
+
+    <div class="home-section-heading centered">
+
+      <span>
+        HOW IT WORKS
+      </span>
+
+      <h2>
+
+        Simple From
+
+        <strong>
+          Start to Sale
+        </strong>
+
+      </h2>
+
+
+      <p>
+        SmartBill keeps your daily retail workflow
+        simple and organized.
+      </p>
+
+    </div>
+
+
+    <div class="steps">
+
+      <div class="step-card">
+
+        <b>01</b>
+
+        <div class="step-icon">
+          ▦
+        </div>
+
+        <h3>
+          Add Products
+        </h3>
+
+        <p>
+          Maintain products, units, prices
+          and available stock.
+        </p>
+
+      </div>
+
+
+      <div class="step-arrow">
+        →
+      </div>
+
+
+      <div class="step-card">
+
+        <b>02</b>
+
+        <div class="step-icon">
+          ＋
+        </div>
+
+        <h3>
+          Create a Bill
+        </h3>
+
+        <p>
+          Search products and build
+          the current bill.
+        </p>
+
+      </div>
+
+
+      <div class="step-arrow">
+        →
+      </div>
+
+
+      <div class="step-card">
+
+        <b>03</b>
+
+        <div class="step-icon">
+          ✓
+        </div>
+
+        <h3>
+          Complete Sale
+        </h3>
+
+        <p>
+          Generate an invoice and
+          record the transaction.
+        </p>
+
+      </div>
+
+
+      <div class="step-arrow">
+        →
+      </div>
+
+
+      <div class="step-card">
+
+        <b>04</b>
+
+        <div class="step-icon">
+          ◒
+        </div>
+
+        <h3>
+          Understand Business
+        </h3>
+
+        <p>
+          Review sales, analytics,
+          stock and insights.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       APP PREVIEW
+  ========================== -->
+
+  <section
+    class="home-section"
+    id="screenshots"
+  >
+
+    <div class="home-section-heading">
+
+      <span>
+        APP PREVIEW
+      </span>
+
+      <h2>
+
+        A Clean and
+
+        <strong>
+          Modern Interface
+        </strong>
+
+      </h2>
+
+
+      <p>
+        A simple interface designed for
+        everyday retail work.
+      </p>
+
+    </div>
+
+
+    <div class="preview-grid">
+
+
+      <a
+        href="/dashboard"
+        class="preview-card"
+      >
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/preview-dashboard.png'
+          ) }}"
+          alt="Dashboard"
+        >
+
+        <h3>
+          Dashboard
+        </h3>
+
+        <p>
+          Overview of your sales and
+          business performance.
+        </p>
+
+      </a>
+
+
+
+      <a
+        href="/billing"
+        class="preview-card"
+      >
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/preview-billing.png'
+          ) }}"
+          alt="Billing"
+        >
+
+        <h3>
+          New Bill
+        </h3>
+
+        <p>
+          Create bills with product
+          search and real-time totals.
+        </p>
+
+      </a>
+
+
+
+      <a
+        href="/products"
+        class="preview-card"
+      >
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/preview-products.png'
+          ) }}"
+          alt="Products"
+        >
+
+        <h3>
+          Products
+        </h3>
+
+        <p>
+          Manage products, prices,
+          units and stock.
+        </p>
+
+      </a>
+
+
+
+      <a
+        href="/analytics"
+        class="preview-card"
+      >
+
+        <img
+          src="{{ url_for(
+            'static',
+            filename='assets/preview-analytics.png'
+          ) }}"
+          alt="Analytics"
+        >
+
+        <h3>
+          Analytics
+        </h3>
+
+        <p>
+          Visualize sales with clear
+          interactive charts.
+        </p>
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       WHY SMARTBILL
+  ========================== -->
+
+  <section
+    class="why-smartbill"
+    id="why-smartbill"
+  >
+
+    <div class="why-content">
+
+      <span>
+        WHY SMARTBILL
+      </span>
+
+      <h2>
+
+        Built for Real
+
+        <strong>
+          Retail Businesses
+        </strong>
+
+      </h2>
+
+
+      <p>
+        SmartBill is designed to keep retail
+        operations simple, organized and easy
+        to understand.
+      </p>
+
+    </div>
+
+
+    <div class="why-points">
+
+      <div>
+        <b>⚡</b>
+
+        <strong>
+          Simple Workflow
+        </strong>
+
+        <span>
+          Focus on billing and business,
+          not complicated software.
+        </span>
+      </div>
+
+
+      <div>
+        <b>▦</b>
+
+        <strong>
+          Built for Retail
+        </strong>
+
+        <span>
+          Designed around products,
+          billing, stock and sales.
+        </span>
+      </div>
+
+
+      <div>
+        <b>◷</b>
+
+        <strong>
+          Saves Time
+        </strong>
+
+        <span>
+          Keep everyday billing tasks
+          organized and efficient.
+        </span>
+      </div>
+
+
+      <div>
+        <b>▮</b>
+
+        <strong>
+          Clear Insights
+        </strong>
+
+        <span>
+          Understand sales activity
+          through useful information.
+        </span>
+      </div>
+
+    </div>
+
+
+    <a
+      href="/dashboard"
+      class="why-button"
+    >
+
+      Get Started with SmartBill
+
+      <span>
+        →
+      </span>
+
+    </a>
+
+  </section>
+
+
+
+  <!-- =========================
+       CTA
+  ========================== -->
+
+  <section class="final-cta">
+
+    <div>
+
+      <span>
+        READY TO GET STARTED?
+      </span>
+
+      <h2>
+
+        Make Your Retail
+
+        <strong>
+          Business Simpler.
+        </strong>
+
+      </h2>
+
+      <p>
+        Bring your billing, products and sales
+        into one place with SmartBill.
+      </p>
+
+    </div>
+
+
+    <a href="/dashboard">
+
+      Open SmartBill
+
+      <span>
+        →
+      </span>
+
+    </a>
+
+  </section>
+
+
+</div>
+
+{% endblock %}
+
+
+
+{% block page_script %}
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    /*
+     * Home must be active on the sidebar.
+     */
+
+    document
+      .querySelectorAll(".main-nav a")
+      .forEach(function (link) {
+
+        link.classList.remove("active");
+
+      });
+
+
+    const homeLink =
+      document.querySelector(
+        '.main-nav a[data-page="home"]'
+      );
+
+
+    if (homeLink) {
+
+      homeLink.classList.add("active");
+
+    }
+
+  }
+);
+
+</script>
+
+{% endblock %}

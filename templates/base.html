@@ -1,62 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}SmartBill{% endblock %}</title>
-  <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <a class="brand" href="/dashboard.html" aria-label="SmartBill Dashboard">
-        <span class="brand-mark">▣</span>
-        <span>
-          <strong>SmartBill</strong>
-          <small>Retail Billing System</small>
-        </span>
-      </a>
 
-  <nav class="main-nav" aria-label="Main navigation">
-    <a href="/" data-page="dashboard"><span>⌂</span>Dashboard</a>
-    <a href="/products" data-page="products"><span>▦</span>Products</a>
-    <a href="/billing" data-page="billing"><span>＋</span>New Bill</a>
-    <a href="/sales" data-page="sales"><span>▤</span>Sales History</a>
-    <a href="/analytics" data-page="analytics"><span>◒</span>Analytics</a>
-    <a href="/settings" data-page="settings"><span>⚙</span>Settings</a>
-  </nav>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    {% block title %}SmartBill{% endblock %}
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+  >
+
+  {% block extra_css %}{% endblock %}
+
+</head>
+
+
+<body>
+
+  <div class="app-shell">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside
+      class="sidebar"
+      id="sidebar"
+    >
+
+    <!-- SmartBill Logo -->
+<a
+  class="brand"
+  href="/"
+  aria-label="SmartBill Home"
+>
+  <img
+    src="{{ url_for('static', filename='assets/smartbill-logo.png') }}"
+    alt="SmartBill - Retail Billing System"
+    class="smartbill-logo"
+  >
+</a>
+
+
+      <!-- Navigation -->
+
+      <nav
+        class="main-nav"
+        aria-label="Main navigation"
+      >
+
+        <!-- HOME -->
+
+        <a
+          href="/"
+          data-page="home"
+        >
+
+          <span>⌂</span>
+
+          Home
+
+        </a>
+
+
+        <!-- DASHBOARD -->
+
+        <a
+          href="/dashboard"
+          data-page="dashboard"
+        >
+
+          <span>▣</span>
+
+          Dashboard
+
+        </a>
+
+
+        <!-- PRODUCTS -->
+
+        <a
+          href="/products"
+          data-page="products"
+        >
+
+          <span>▦</span>
+
+          Products
+
+        </a>
+
+
+        <!-- BILLING -->
+
+        <a
+          href="/billing"
+          data-page="billing"
+        >
+
+          <span>＋</span>
+
+          New Bill
+
+        </a>
+
+
+        <!-- SALES -->
+
+        <a
+          href="/sales"
+          data-page="sales"
+        >
+
+          <span>▤</span>
+
+          Sales History
+
+        </a>
+
+
+        <!-- ANALYTICS -->
+
+        <a
+          href="/analytics"
+          data-page="analytics"
+        >
+
+          <span>◒</span>
+
+          Analytics
+
+        </a>
+
+
+        <!-- SETTINGS -->
+
+        <a
+          href="/settings"
+          data-page="settings"
+        >
+
+          <span>⚙</span>
+
+          Settings
+
+        </a>
+
+      </nav>
+
+
+      <!-- =========================
+           USER
+      ========================== -->
 
       <div class="sidebar-user">
-        <div class="avatar">A</div>
-        <div>
-          <strong>Admin</strong>
-          <small>admin@shop.com</small>
+
+        <div class="avatar">
+          A
         </div>
+
+        <div>
+
+          <strong>
+            Admin
+          </strong>
+
+          <small>
+            admin@shop.com
+          </small>
+
+        </div>
+
       </div>
+
     </aside>
 
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
     <main class="main-content">
+
+
+      <!-- Mobile Header -->
+
       <header class="mobile-header">
-        <button class="icon-button" id="menuToggle" aria-label="Open navigation">☰</button>
-        <strong>SmartBill</strong>
-        <span class="mobile-page-title">{% block mobile_title %}{% endblock %}</span>
+
+        <button
+          class="icon-button"
+          id="menuToggle"
+          aria-label="Open navigation"
+        >
+          ☰
+        </button>
+
+
+        <strong>
+          SmartBill
+        </strong>
+
+
+        <span class="mobile-page-title">
+
+          {% block mobile_title %}{% endblock %}
+
+        </span>
+
       </header>
 
+
+      <!-- Page -->
+
       <div class="page-content">
+
         {% block content %}{% endblock %}
+
       </div>
+
     </main>
+
   </div>
 
-  <nav class="mobile-nav" aria-label="Mobile navigation">
-    <a href="/dashboard.html" data-page="dashboard"><span>⌂</span><small>Home</small></a>
-    <a href="/products.html" data-page="products"><span>▦</span><small>Products</small></a>
-    <a href="/billing.html" data-page="billing"><span>＋</span><small>Bill</small></a>
-    <a href="/sales.html" data-page="sales"><span>▤</span><small>Sales</small></a>
-    <a href="/analytics.html" data-page="analytics"><span>◒</span><small>Insights</small></a>
+
+
+  <!-- =========================
+       MOBILE NAVIGATION
+  ========================== -->
+
+  <nav
+    class="mobile-nav"
+    aria-label="Mobile navigation"
+  >
+
+    <a
+      href="/"
+      data-page="home"
+    >
+
+      <span>⌂</span>
+
+      <small>
+        Home
+      </small>
+
+    </a>
+
+
+    <a
+      href="/products"
+      data-page="products"
+    >
+
+      <span>▦</span>
+
+      <small>
+        Products
+      </small>
+
+    </a>
+
+
+    <a
+      href="/billing"
+      data-page="billing"
+    >
+
+      <span>＋</span>
+
+      <small>
+        Bill
+      </small>
+
+    </a>
+
+
+    <a
+      href="/sales"
+      data-page="sales"
+    >
+
+      <span>▤</span>
+
+      <small>
+        Sales
+      </small>
+
+    </a>
+
+
+    <a
+      href="/analytics"
+      data-page="analytics"
+    >
+
+      <span>◒</span>
+
+      <small>
+        Insights
+      </small>
+
+    </a>
+
   </nav>
 
-  <script src="/static/js/app.js"></script>
+
+
+  <!-- Global JS -->
+
+  <script
+    src="{{ url_for('static', filename='js/app.js') }}"
+  ></script>
+
+
   {% block page_script %}{% endblock %}
+
 </body>
+
 </html>
