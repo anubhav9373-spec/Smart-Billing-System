@@ -6,12 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll("[data-page]").forEach(link => {
 
-    const page =
-      link.dataset.page;
+    const page = link.dataset.page;
 
 
     const routes = {
-      dashboard: "/",
+      home: "/",
+      dashboard: "/dashboard",
       products: "/products",
       billing: "/billing",
       sales: "/sales",
